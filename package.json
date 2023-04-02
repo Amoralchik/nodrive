@@ -1,0 +1,13 @@
+{
+  "name": "main",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "docker-compose up",
+    "start:client": "cd client && yarn dev",
+    "start:server": "cd server && yarn start:dev"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
