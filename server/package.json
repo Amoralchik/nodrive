@@ -28,13 +28,18 @@
     "@nestjs/platform-express": "^9.0.0",
     "@prisma/client": "^4.12.0",
     "@quixo3/prisma-session-store": "^3.1.11",
+    "@types/mime": "^3.0.1",
     "cookie-parser": "^1.4.6",
     "express-session": "^1.17.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "jimp": "^0.22.7",
+    "mime": "^3.0.0",
     "passport": "^0.6.0",
     "passport-google-oauth": "^2.0.0",
     "prisma": "^4.12.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "sharp": "^0.32.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

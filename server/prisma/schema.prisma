@@ -14,27 +14,35 @@ model User {
   id    Int     @default(autoincrement()) @id
   email String  @unique
   name  String
+  picture String
   Folders Folder[]
   Files File[]
 }
 
 model Folder {
-  id    Int     @default(autoincrement()) @id
+  id        Int      @id @default(autoincrement())
+  name      String
   owner User @relation(fields: [ownerId], references: [id])
   ownerId  Int
-  name  String
-  Files File[]
+  parent    Folder?  @relation("childFolders", fields: [parentId], references: [id])
+  parentId  Int?
+  files     File[]
+  childFolders Folder[] @relation("childFolders")
 }
 
 model File {
-  id        Int      @default(autoincrement()) @id
-  title     String
-  content   String
-  folder Folder @relation(fields: [folderId], references: [id])
+  id        Int     @id @default(autoincrement())
+  name      String
+  codeName String? @default(cuid())
+  folder    Folder  @relation(fields: [folderId], references: [id])
   folderId  Int
+  content   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   owner User @relation(fields: [ownerId], references: [id])
   ownerId  Int
   accsessMails String[]
+  mimeType String
 }
 
 model Session {

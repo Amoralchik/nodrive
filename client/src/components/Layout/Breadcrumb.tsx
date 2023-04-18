@@ -1,11 +1,20 @@
-import { Breadcrumb } from "flowbite-react";
+import { RootState } from "@store/index";
+import { useSelector } from "react-redux";
+import { Breadcrumbs, Anchor } from "@mantine/core";
 
 export function BreadcrumbLayout() {
+  const folders = useSelector(
+    (state: RootState) => state.foldersReducer.folders
+  );
+  const selectedFolders = useSelector(
+    (state: RootState) => state.foldersReducer.selected
+  );
+  const folderName = folders[selectedFolders]?.name;
+
   return (
-    <Breadcrumb aria-label="Default breadcrumb example">
-      <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-      <Breadcrumb.Item href="/archive">Archive</Breadcrumb.Item>
-      <Breadcrumb.Item>Recently open</Breadcrumb.Item>
-    </Breadcrumb>
+    <Breadcrumbs mt="xs">
+      <Anchor href="/archive">Archive</Anchor>
+      <Anchor href={`/archive/${folderName}`}>{folderName}</Anchor>
+    </Breadcrumbs>
   );
 }

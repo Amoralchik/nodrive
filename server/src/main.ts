@@ -22,7 +22,7 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: {
         httpOnly: false,
-        expires: new Date(Date.now() + 3600000),
+        expires: new Date(Date.now() + 660000000),
         sameSite: true,
       },
       store: new PrismaSessionStore(new PrismaClient(), {

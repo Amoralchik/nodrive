@@ -1,37 +1,56 @@
+import { createStyles, Container, Group, ActionIcon, rem } from "@mantine/core";
+import {
+  IconBrandTwitter,
+  IconBrandYoutube,
+  IconBrandInstagram,
+} from "@tabler/icons-react";
+import { Logo } from "./Logo";
+
+const useStyles = createStyles((theme) => ({
+  footer: {
+    borderTop: `${rem(1)} solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
+    }`,
+  },
+
+  inner: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingTop: theme.spacing.xl,
+    paddingBottom: theme.spacing.xl,
+
+    [theme.fn.smallerThan("xs")]: {
+      flexDirection: "column",
+    },
+  },
+
+  links: {
+    [theme.fn.smallerThan("xs")]: {
+      marginTop: theme.spacing.md,
+    },
+  },
+}));
+
 export function Footer() {
+  const { classes } = useStyles();
+
   return (
-    <footer className="bg-white border-gray-200 dark:bg-gray-900 rounded-lg shadow p-4">
-      <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2023{" "}
-          <a href="/" className="hover:underline">
-            NoDrive
-          </a>
-          . All Rights Reserved.
-        </span>
-        <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-          <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
-              Privacy Policy
-            </a>
-          </li>
-          <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
-              Licensing
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-    </footer>
+    <div className={classes.footer}>
+      <Container className={classes.inner}>
+        <Logo />
+        <Group spacing={0} className={classes.links} position="right" noWrap>
+          <ActionIcon size="lg">
+            <IconBrandTwitter size="1.05rem" stroke={1.5} />
+          </ActionIcon>
+          <ActionIcon size="lg">
+            <IconBrandYoutube size="1.05rem" stroke={1.5} />
+          </ActionIcon>
+          <ActionIcon size="lg">
+            <IconBrandInstagram size="1.05rem" stroke={1.5} />
+          </ActionIcon>
+        </Group>
+      </Container>
+    </div>
   );
 }

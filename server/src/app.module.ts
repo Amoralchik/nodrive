@@ -6,9 +6,17 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { GoogleStrategy } from './auth/google.strategy';
 import { PrismaService } from './prisma.service';
+import { FilesModule } from './files/files.module';
+import { FoldersModule } from './folders/folders.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, ConfigModule.forRoot()],
+  imports: [
+    AuthModule,
+    UsersModule,
+    FilesModule,
+    FoldersModule,
+    ConfigModule.forRoot(),
+  ],
   controllers: [AppController],
   providers: [AppService, PrismaService, GoogleStrategy],
 })

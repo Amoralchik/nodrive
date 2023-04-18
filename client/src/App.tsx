@@ -1,12 +1,15 @@
 import { useEffect } from "react";
-import Layout from "./Layout/Layout";
-import { Archive } from "./page/Archive";
-import { Landing } from "./page/Landing";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "@store/slices/login";
 import { RootState } from "./store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
+import { Landing } from "./page/Landing";
+import { NotFound } from "./page/404";
+import { ArchiveLayout } from "./Layout/ArchiveLayout";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:3001/";
@@ -20,20 +23,15 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="font-sans">
+      <ToastContainer autoClose={1000} position="bottom-left" />
+
       <Routes>
         <Route index element={<Landing />} />
 
-        <Route
-          path="/archive"
-          element={
-            <Layout>
-              <Archive />
-            </Layout>
-          }
-        />
+        {isLogin && <Route path="/archive" element={<ArchiveLayout />} />}
 
-        <Route path="*" element={<div />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginReducer from "./slices/login";
+import foldersReducer from "./slices/folders";
+import filesReducer from "./slices/files";
 
 export const store = configureStore({
   reducer: {
     loginReducer,
+    foldersReducer,
+    filesReducer,
   },
 });
 

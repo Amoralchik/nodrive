@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },
-  plugins: [require("flowbite/plugin")],
+  // https://github.com/tailwindlabs/tailwindcss/issues/6602#issuecomment-1023595588
+  corePlugins: {
+    preflight: false,
+  },
+  plugins: [],
 };

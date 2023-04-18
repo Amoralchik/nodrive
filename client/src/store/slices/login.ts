@@ -5,8 +5,7 @@ export interface LoginState {
   isLogin: boolean;
   user: {
     picture: string;
-    firstName: string;
-    lastName: string;
+    name: string;
     email: string;
   };
 }
@@ -15,8 +14,7 @@ const initialState: LoginState = {
   isLogin: false,
   user: {
     picture: "",
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
   },
 };
@@ -38,8 +36,19 @@ export const loginSlice = createSlice({
 export const login = async (dispatch: (arg0: any) => void) => {
   try {
     const response = await axios.get("users/me");
-    if (response.data.user) {
-      dispatch(loginAction(response.data.user));
+    if (response.data) {
+      dispatch(loginAction(response.data));
+    }
+  } catch (err) {
+    dispatch(logoutAction());
+  }
+};
+
+export const logout = async (dispatch: (arg0: any) => void) => {
+  try {
+    const response = await axios.get("users/logout");
+    if (response.status === 200) {
+      dispatch(logoutAction());
     }
   } catch (err) {
     dispatch(logoutAction());
